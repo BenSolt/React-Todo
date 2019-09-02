@@ -5,7 +5,7 @@ import TodoForm from "./components/TodoComponents/TodoForm";
 
 
 
-const groceries =[
+const todos =[
 
   {name: 'Breakfast',
   id: 1,
@@ -35,7 +35,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state={
-      groceries
+      todos
     };
 }
 
@@ -45,7 +45,7 @@ class App extends React.Component {
     console.log(id);
 
     this.setState({
-      groceries: this.state.groceries.map(item => {
+      todos: this.state.todos.map(item => {
         if (item.id === id) {
         return {
           ...item,
@@ -68,10 +68,16 @@ class App extends React.Component {
       
     }
     this.setState({
-      groceries: [...this.state.groceries, newItem]
+      todos: [...this.state.todos, newItem]
     })
   }
 
+  clearPurchased = () => {
+    this.setState({
+  todos: this.state.todos.filter(item => !item.purchased)
+    })
+  }
+  
   
   render() {
     return (
@@ -79,11 +85,13 @@ class App extends React.Component {
         <div>
         <h2>Welcome to your Todo App!</h2>
         <TodoForm addItem={this.addItem} />
+        
         </div>
         <TodoList
-        groceries={this.state.groceries}
+        todos={this.state.todos}
         toggleItem={this.toggleItem}
         />
+        
       </div>
     );
   }
