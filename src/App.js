@@ -72,7 +72,8 @@ class App extends React.Component {
     })
   }
 
-  clearPurchased = () => {
+  clearItem = () => {
+    // console.log(id);
     this.setState({
   todos: this.state.todos.filter(item => !item.purchased)
     })
@@ -90,6 +91,7 @@ class App extends React.Component {
         <TodoList
         todos={this.state.todos}
         toggleItem={this.toggleItem}
+        clearItem={this.clearItem}
         />
         
       </div>

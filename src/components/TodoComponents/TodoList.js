@@ -13,8 +13,8 @@ return(
         {props.todos.map(item => (
             <Todo key={item.id} item={item} toggleItem={props.toggleItem}/>
         ))}
-        <button className="clear-btn" onClick={props.clearPurchased}>
-            Clear Purchased
+        <button className="clear-btn" onClick={props.clearItem}>
+            Clear Item
         </button>     
     </div>
     );
