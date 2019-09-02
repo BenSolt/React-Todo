@@ -8,6 +8,17 @@ class TodoForm extends React.Component{
         };
     }
 
+handleChanges= e => {
+    this.setState({
+        [e.target.name]: e.target.value
+    });
+};
+
+submitItem = e => {
+this.props.addItem()
+};
+
+
     render(){
         return(
             <form OnSubmit={this.submitItem}>
@@ -19,6 +30,8 @@ class TodoForm extends React.Component{
             />
               <button>Add</button>  
             </form>
-        )
+        );
     }
 }
+
+export default TodoForm;
