@@ -15,13 +15,14 @@ handleChanges= e => {
 };
 
 submitItem = e => {
-this.props.addItem()
+    e.preventDefault();
+    this.props.addItem(this.state.item);
 };
 
 
     render(){
         return(
-            <form OnSubmit={this.submitItem}>
+            <form onSubmit={this.submitItem}>
             <input
             type="text"
             value={this.state.item}

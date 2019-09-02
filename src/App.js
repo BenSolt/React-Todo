@@ -1,18 +1,24 @@
 import React from 'react';
 
-import TodoForm from "./components/TodoComponents/TodoForm";
 import TodoList from "./components/TodoComponents/TodoList";
+import TodoForm from "./components/TodoComponents/TodoForm";
+
 
 
 const groceries =[
 
-  {name: 'banana',
+  {name: 'Breakfast',
   id: 1,
   purhcased: false
   },
   
-  {name: 'apple',
+  {name: 'Lambda- Lecture Class Components',
   id: 2,
+  purhcased: false
+  },
+
+  {name: 'Enjoy the rest of the day!',
+  id: 3,
   purhcased: false
   },
   
@@ -37,16 +43,46 @@ class App extends React.Component {
 
   toggleItem = id => {
     console.log(id);
+
+    this.setState({
+      groceries: this.state.groceries.map(item => {
+        if (item.id === id) {
+        return {
+          ...item,
+          purchased: !item.purchased
+        }
+      } else {
+        return item;
+      }
+      })
+     
+    })
+
   };
+
+  addItem = itemName => {
+    const newItem = {
+      name: itemName,
+      id: Date.now(),
+      purhcased: false
+      
+    }
+    this.setState({
+      groceries: [...this.state.groceries, newItem]
+    })
+  }
+
   
   render() {
     return (
       <div>
+        <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoForm/>
+        <TodoForm addItem={this.addItem} />
+        </div>
         <TodoList
         groceries={this.state.groceries}
-        toggleItem={null}
+        toggleItem={this.toggleItem}
         />
       </div>
     );
